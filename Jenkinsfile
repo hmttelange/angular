@@ -17,6 +17,9 @@ node{
               def app = docker.build("hmttelange/angular:${commit_id}", '.').push()
              }
         }
+        stage('send build mail'){
+                      emailext  attachLog: true, subject: "${JOB_NAME}-Jenkins built number # ${BUILD_NUMBER} is success", to: 'hanmantmtelange@gmail.com,hmt4275@gmail.com'
+        }
 
     }catch(e){
           emailext  attachLog: true, subject: "${JOB_NAME}-Jenkins built number # ${BUILD_NUMBER} is failed", to: 'hanmantmtelange@gmail.com,hmt4275@gmail.com'
