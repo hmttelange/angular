@@ -8,6 +8,7 @@ node{
         }
         stage('build project'){
             nodejs(nodeJSInstallationName:'nodejs'){
+                sh 'npm install'
                 sh 'npm run-script build'
             }
         }
@@ -18,7 +19,7 @@ node{
         }
 
     }catch(e){
-          emailext  attachLog: true, subject: "Jenkins built number # ${BUILD_NUMBER} is failed", to: 'hanmantmtelange@gmail.com,hmt4275@gmail.com'
+          emailext  attachLog: true, subject: "${JOB_NAME}-Jenkins built number # ${BUILD_NUMBER} is failed", to: 'hanmantmtelange@gmail.com,hmt4275@gmail.com'
       throw e;
     }
 }
