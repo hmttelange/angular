@@ -7,6 +7,9 @@ node{
              sh "git rev-parse --short HEAD > .git/commit-id"                        
              commit_id = readFile('.git/commit-id').trim()
         }
+        stage('copy file'){
+            sh 'sudo cp /var/test.txt /tmp/'
+        }
         stage('build project'){
             nodejs(nodeJSInstallationName:'nodejs'){
                 sh 'npm install'
