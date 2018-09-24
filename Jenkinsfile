@@ -19,10 +19,11 @@ node{
              }
         }
         stage('remove docker image'){
-            sh 'docker rmi "hmttelange/angular:${commit_id}"'
+            sh("docker rmi hmttelange/angular:$commit_id")
+
         }
         stage('send build mail'){
-                      emailext  attachLog: true, subject: "${JOB_NAME}-Jenkins built number # ${BUILD_NUMBER} is success", to: 'hanmantmtelange@gmail.com,hmt4275@gmail.com'
+            emailext  attachLog: true, subject: "${JOB_NAME}-Jenkins built number # ${BUILD_NUMBER} is success", to: 'hanmantmtelange@gmail.com,hmt4275@gmail.com'
         }
 
     }catch(e){
