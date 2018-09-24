@@ -19,7 +19,7 @@ node{
              }
         }
         stage('remove docker image'){
-            sh("docker rmi hmttelange/angular:$commit_id")
+            sh("docker rmi -f hmttelange/angular:$commit_id")
 
         }
         stage('send build mail'){
